@@ -1,0 +1,11 @@
+F:\VBStudio\CSAY_DipGEN\CSAY_DipGen\CSAY_DipGen\bin\Debug\CSAY_DipGen.exe.config
+F:\VBStudio\CSAY_DipGEN\CSAY_DipGen\CSAY_DipGen\bin\Debug\CSAY_DipGen.exe
+F:\VBStudio\CSAY_DipGEN\CSAY_DipGen\CSAY_DipGen\bin\Debug\CSAY_DipGen.pdb
+F:\VBStudio\CSAY_DipGEN\CSAY_DipGen\CSAY_DipGen\obj\Debug\CSAY_DipGen.csproj.AssemblyReference.cache
+F:\VBStudio\CSAY_DipGEN\CSAY_DipGen\CSAY_DipGen\obj\Debug\CSAY_DipGen.Properties.Resources.resources
+F:\VBStudio\CSAY_DipGEN\CSAY_DipGen\CSAY_DipGen\obj\Debug\CSAY_DipGen.csproj.GenerateResource.cache
+F:\VBStudio\CSAY_DipGEN\CSAY_DipGen\CSAY_DipGen\obj\Debug\CSAY_DipGen.csproj.CoreCompileInputs.cache
+F:\VBStudio\CSAY_DipGEN\CSAY_DipGen\CSAY_DipGen\obj\Debug\CSAY_DipGen.exe
+F:\VBStudio\CSAY_DipGEN\CSAY_DipGen\CSAY_DipGen\obj\Debug\CSAY_DipGen.pdb
+F:\VBStudio\CSAY_DipGEN\CSAY_DipGen\CSAY_DipGen\obj\Debug\CSAY_DipGen.exe.config
+F:\VBStudio\CSAY_DipGEN\CSAY_DipGen\CSAY_DipGen\obj\Debug\CSAY_DipGen.FrmDipGen.resources
