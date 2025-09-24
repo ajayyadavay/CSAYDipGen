@@ -11,6 +11,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+// Interop
+using Word = Microsoft.Office.Interop.Word;
 
 namespace CSAY_DipGen
 {
@@ -92,7 +94,111 @@ namespace CSAY_DipGen
                 TxtFinalBillNepaliWords.Text = num2words;
                 TxtFinalBillEnglishWords.Text = num2words;
             }
+
+            try
+            {
+                TxtFinalBill_GT_Nepali.Text = TxtFinalBill_GT.Text;
+            }
+            catch
+            {
+
+            }
             
+        }
+
+        private void TxtFY_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                TxtFYNepali.Text = TxtFY.Text;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void TxtWorkCompletion_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                TxtWorkcompletionNepali.Text = TxtWorkCompletion.Text;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private Dictionary<string, string> GetReplacementDictionary()
+        {
+            double num;
+            string num2words;
+            var dict = new Dictionary<string, string>();
+            CSAYNumToWord cnw = new CSAYNumToWord();
+            
+            
+            //Estimate Preparation tippani
+            dict["???Est_Date???"] = dataGridViewDate.Rows[3].Cells["ColDate"].Value?.ToString();
+            dict["???Context1???"] = TxtContext1.Text;
+            dict["???आ.व.???"] = TxtFYNepali.Text;
+            dict["???Budget_Subhead???"] = dataGridViewDate.Rows[0].Cells["ColDate"].Value?.ToString();
+            dict["<<PROJECT_NAME>>"] = TxtProjectName.Text;
+            dict["???Est_Amount???"] = dataGridViewCC.Rows[3].Cells["ColOfficeEst"].Value?.ToString();
+
+            num = Convert.ToDouble(dataGridViewCC.Rows[3].Cells["ColOfficeEst"].Value?.ToString());
+            num2words = cnw.ConvertNumberToNepaliWord(num);
+            dict["<<EST_NEPALI_WORDS>>"] = num2words;
+
+            dict["<<LVL1_NAME_POSITION>>"] = TxtLvl1.Text;
+
+            //Estimate checking tippani
+            dict["???Est_Chk_Date???"] = dataGridViewDate.Rows[4].Cells["ColDate"].Value?.ToString();
+            dict["???Context2???"] = TxtContext2.Text;
+            dict["<<LVL2_NAME_POSITION>>"] = TxtLvl2.Text;
+
+
+
+
+            return dict;
+        }
+
+        private void generateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string Cur_Dir = Environment.CurrentDirectory;
+            
+            string templatePath = Cur_Dir + "\\DipGenFileFormat\\" + "DipGenFileFormat.docx";
+            string outputPath = Cur_Dir + "\\DipGenOutput\\" + "DipGenOutputFile.docx";
+
+            var replacements = GetReplacementDictionary();
+
+            var wordApp = new Word.Application();
+            Word.Document doc = null;
+            try
+            {
+                doc = wordApp.Documents.Open(templatePath);
+
+                foreach (var pair in replacements)
+                {
+                    Word.Find findObject = wordApp.Selection.Find;
+                    findObject.ClearFormatting();
+                    findObject.Text = pair.Key;
+                    findObject.Replacement.ClearFormatting();
+                    findObject.Replacement.Text = pair.Value ?? "";
+
+                    object replaceAll = Word.WdReplace.wdReplaceAll;
+                    findObject.Execute(Replace: ref replaceAll);
+                }
+
+                doc.SaveAs2(outputPath);
+                MessageBox.Show("Document created !");
+            }
+            finally
+            {
+                doc?.Close();
+                wordApp.Quit();
+            }
+
         }
 
         public void Generate_CC_Datagridview()

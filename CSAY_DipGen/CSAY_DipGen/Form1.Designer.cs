@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtFinalBillNepaliWords = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -38,7 +43,6 @@
             this.TxtWorkCompletion = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.TxtFY = new System.Windows.Forms.TextBox();
             this.TxtProjectName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,21 +63,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewDate = new System.Windows.Forms.DataGridView();
-            this.ColSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDescriptions = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewCC = new System.Windows.Forms.DataGridView();
-            this.ColSN1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColOfficeEst = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColOff = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColContractor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColContractor11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColContractor2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColContractor22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColContractor3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -88,6 +80,21 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TxtFYNepali = new System.Windows.Forms.TextBox();
+            this.TxtWorkcompletionNepali = new System.Windows.Forms.TextBox();
+            this.TxtFinalBill_GT_Nepali = new System.Windows.Forms.TextBox();
+            this.ColSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescriptions = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSN1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColOfficeEst = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColOff = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColContractor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColContractor11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColContractor2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColContractor22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColContractor3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -101,6 +108,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.TxtFinalBill_GT_Nepali);
+            this.groupBox1.Controls.Add(this.TxtWorkcompletionNepali);
+            this.groupBox1.Controls.Add(this.TxtFYNepali);
             this.groupBox1.Controls.Add(this.TxtFinalBillNepaliWords);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.TxtFinalBillEnglishWords);
@@ -109,7 +119,6 @@
             this.groupBox1.Controls.Add(this.TxtWorkCompletion);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.TxtFY);
             this.groupBox1.Controls.Add(this.TxtProjectName);
             this.groupBox1.Controls.Add(this.label2);
@@ -124,6 +133,7 @@
             // 
             // TxtFinalBillNepaliWords
             // 
+            this.TxtFinalBillNepaliWords.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtFinalBillNepaliWords.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtFinalBillNepaliWords.Location = new System.Drawing.Point(224, 194);
             this.TxtFinalBillNepaliWords.Name = "TxtFinalBillNepaliWords";
@@ -142,6 +152,7 @@
             // 
             // TxtFinalBillEnglishWords
             // 
+            this.TxtFinalBillEnglishWords.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtFinalBillEnglishWords.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtFinalBillEnglishWords.Location = new System.Drawing.Point(224, 162);
             this.TxtFinalBillEnglishWords.Name = "TxtFinalBillEnglishWords";
@@ -163,7 +174,7 @@
             this.TxtFinalBill_GT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtFinalBill_GT.Location = new System.Drawing.Point(224, 130);
             this.TxtFinalBill_GT.Name = "TxtFinalBill_GT";
-            this.TxtFinalBill_GT.Size = new System.Drawing.Size(671, 26);
+            this.TxtFinalBill_GT.Size = new System.Drawing.Size(318, 26);
             this.TxtFinalBill_GT.TabIndex = 8;
             this.TxtFinalBill_GT.TextChanged += new System.EventHandler(this.TxtFinalBill_GT_TextChanged);
             // 
@@ -172,8 +183,9 @@
             this.TxtWorkCompletion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtWorkCompletion.Location = new System.Drawing.Point(224, 96);
             this.TxtWorkCompletion.Name = "TxtWorkCompletion";
-            this.TxtWorkCompletion.Size = new System.Drawing.Size(671, 26);
+            this.TxtWorkCompletion.Size = new System.Drawing.Size(318, 26);
             this.TxtWorkCompletion.TabIndex = 7;
+            this.TxtWorkCompletion.TextChanged += new System.EventHandler(this.TxtWorkCompletion_TextChanged);
             // 
             // label4
             // 
@@ -195,21 +207,14 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Work Completion date";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(224, 60);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 28);
-            this.comboBox1.TabIndex = 4;
-            // 
             // TxtFY
             // 
             this.TxtFY.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFY.Location = new System.Drawing.Point(351, 60);
+            this.TxtFY.Location = new System.Drawing.Point(224, 63);
             this.TxtFY.Name = "TxtFY";
-            this.TxtFY.Size = new System.Drawing.Size(544, 26);
+            this.TxtFY.Size = new System.Drawing.Size(318, 26);
             this.TxtFY.TabIndex = 3;
+            this.TxtFY.TextChanged += new System.EventHandler(this.TxtFY_TextChanged);
             // 
             // TxtProjectName
             // 
@@ -320,6 +325,7 @@
             // 
             // TxtContext2
             // 
+            this.TxtContext2.Font = new System.Drawing.Font("Kalimati", 9F);
             this.TxtContext2.Location = new System.Drawing.Point(65, 286);
             this.TxtContext2.Multiline = true;
             this.TxtContext2.Name = "TxtContext2";
@@ -328,6 +334,7 @@
             // 
             // TxtContext1
             // 
+            this.TxtContext1.Font = new System.Drawing.Font("Kalimati", 9F);
             this.TxtContext1.Location = new System.Drawing.Point(65, 171);
             this.TxtContext1.Multiline = true;
             this.TxtContext1.Name = "TxtContext1";
@@ -336,23 +343,26 @@
             // 
             // TxtLvl3
             // 
+            this.TxtLvl3.Font = new System.Drawing.Font("Kalimati", 9F);
             this.TxtLvl3.Location = new System.Drawing.Point(172, 87);
             this.TxtLvl3.Name = "TxtLvl3";
-            this.TxtLvl3.Size = new System.Drawing.Size(723, 24);
+            this.TxtLvl3.Size = new System.Drawing.Size(723, 28);
             this.TxtLvl3.TabIndex = 5;
             // 
             // TxtLvl2
             // 
+            this.TxtLvl2.Font = new System.Drawing.Font("Kalimati", 9F);
             this.TxtLvl2.Location = new System.Drawing.Point(172, 57);
             this.TxtLvl2.Name = "TxtLvl2";
-            this.TxtLvl2.Size = new System.Drawing.Size(723, 24);
+            this.TxtLvl2.Size = new System.Drawing.Size(723, 28);
             this.TxtLvl2.TabIndex = 4;
             // 
             // TxtLvl1
             // 
+            this.TxtLvl1.Font = new System.Drawing.Font("Kalimati", 9F);
             this.TxtLvl1.Location = new System.Drawing.Point(172, 23);
             this.TxtLvl1.Name = "TxtLvl1";
-            this.TxtLvl1.Size = new System.Drawing.Size(723, 24);
+            this.TxtLvl1.Size = new System.Drawing.Size(723, 28);
             this.TxtLvl1.TabIndex = 3;
             // 
             // label7
@@ -401,27 +411,6 @@
             this.dataGridViewDate.Size = new System.Drawing.Size(406, 600);
             this.dataGridViewDate.TabIndex = 2;
             // 
-            // ColSN
-            // 
-            this.ColSN.HeaderText = "SN";
-            this.ColSN.Name = "ColSN";
-            this.ColSN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColSN.Width = 40;
-            // 
-            // ColDescriptions
-            // 
-            this.ColDescriptions.HeaderText = "Description";
-            this.ColDescriptions.Name = "ColDescriptions";
-            this.ColDescriptions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColDescriptions.Width = 180;
-            // 
-            // ColDate
-            // 
-            this.ColDate.HeaderText = "Date/No.";
-            this.ColDate.Name = "ColDate";
-            this.ColDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColDate.Width = 150;
-            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -461,69 +450,6 @@
             this.dataGridViewCC.RowHeadersVisible = false;
             this.dataGridViewCC.Size = new System.Drawing.Size(915, 224);
             this.dataGridViewCC.TabIndex = 1;
-            // 
-            // ColSN1
-            // 
-            this.ColSN1.HeaderText = "SN";
-            this.ColSN1.Name = "ColSN1";
-            this.ColSN1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColSN1.Width = 40;
-            // 
-            // ColDescription
-            // 
-            this.ColDescription.HeaderText = "Description";
-            this.ColDescription.Name = "ColDescription";
-            this.ColDescription.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColDescription.Width = 250;
-            // 
-            // ColOfficeEst
-            // 
-            this.ColOfficeEst.HeaderText = "Office";
-            this.ColOfficeEst.Name = "ColOfficeEst";
-            this.ColOfficeEst.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColOfficeEst.Width = 150;
-            // 
-            // ColOff
-            // 
-            this.ColOff.HeaderText = "NA";
-            this.ColOff.Name = "ColOff";
-            this.ColOff.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColOff.Width = 5;
-            // 
-            // ColContractor1
-            // 
-            this.ColContractor1.HeaderText = "Bidder1";
-            this.ColContractor1.Name = "ColContractor1";
-            this.ColContractor1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColContractor1.Width = 150;
-            // 
-            // ColContractor11
-            // 
-            this.ColContractor11.HeaderText = "NA";
-            this.ColContractor11.Name = "ColContractor11";
-            this.ColContractor11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColContractor11.Width = 5;
-            // 
-            // ColContractor2
-            // 
-            this.ColContractor2.HeaderText = "Bidder2";
-            this.ColContractor2.Name = "ColContractor2";
-            this.ColContractor2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColContractor2.Width = 150;
-            // 
-            // ColContractor22
-            // 
-            this.ColContractor22.HeaderText = "NA";
-            this.ColContractor22.Name = "ColContractor22";
-            this.ColContractor22.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColContractor22.Width = 5;
-            // 
-            // ColContractor3
-            // 
-            this.ColContractor3.HeaderText = "Bidder3";
-            this.ColContractor3.Name = "ColContractor3";
-            this.ColContractor3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColContractor3.Width = 150;
             // 
             // contextMenuStrip1
             // 
@@ -583,8 +509,9 @@
             // generateToolStripMenuItem
             // 
             this.generateToolStripMenuItem.Name = "generateToolStripMenuItem";
-            this.generateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.generateToolStripMenuItem.Text = "Generate";
+            this.generateToolStripMenuItem.Size = new System.Drawing.Size(324, 24);
+            this.generateToolStripMenuItem.Text = "Generate File From Template (*.docx)";
+            this.generateToolStripMenuItem.Click += new System.EventHandler(this.generateToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -628,6 +555,128 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // TxtFYNepali
+            // 
+            this.TxtFYNepali.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.TxtFYNepali.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.TxtFYNepali.Location = new System.Drawing.Point(561, 63);
+            this.TxtFYNepali.Name = "TxtFYNepali";
+            this.TxtFYNepali.Size = new System.Drawing.Size(334, 28);
+            this.TxtFYNepali.TabIndex = 13;
+            // 
+            // TxtWorkcompletionNepali
+            // 
+            this.TxtWorkcompletionNepali.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.TxtWorkcompletionNepali.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.TxtWorkcompletionNepali.Location = new System.Drawing.Point(561, 97);
+            this.TxtWorkcompletionNepali.Name = "TxtWorkcompletionNepali";
+            this.TxtWorkcompletionNepali.Size = new System.Drawing.Size(334, 28);
+            this.TxtWorkcompletionNepali.TabIndex = 14;
+            // 
+            // TxtFinalBill_GT_Nepali
+            // 
+            this.TxtFinalBill_GT_Nepali.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.TxtFinalBill_GT_Nepali.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.TxtFinalBill_GT_Nepali.Location = new System.Drawing.Point(561, 130);
+            this.TxtFinalBill_GT_Nepali.Name = "TxtFinalBill_GT_Nepali";
+            this.TxtFinalBill_GT_Nepali.Size = new System.Drawing.Size(334, 28);
+            this.TxtFinalBill_GT_Nepali.TabIndex = 15;
+            // 
+            // ColSN
+            // 
+            this.ColSN.HeaderText = "SN";
+            this.ColSN.Name = "ColSN";
+            this.ColSN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSN.Width = 40;
+            // 
+            // ColDescriptions
+            // 
+            this.ColDescriptions.HeaderText = "Description";
+            this.ColDescriptions.Name = "ColDescriptions";
+            this.ColDescriptions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColDescriptions.Width = 180;
+            // 
+            // ColDate
+            // 
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Kalimati", 8.25F);
+            this.ColDate.DefaultCellStyle = dataGridViewCellStyle26;
+            this.ColDate.HeaderText = "Date/No.";
+            this.ColDate.Name = "ColDate";
+            this.ColDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColDate.Width = 150;
+            // 
+            // ColSN1
+            // 
+            this.ColSN1.HeaderText = "SN";
+            this.ColSN1.Name = "ColSN1";
+            this.ColSN1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSN1.Width = 40;
+            // 
+            // ColDescription
+            // 
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColDescription.Width = 250;
+            // 
+            // ColOfficeEst
+            // 
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.ColOfficeEst.DefaultCellStyle = dataGridViewCellStyle27;
+            this.ColOfficeEst.HeaderText = "Office";
+            this.ColOfficeEst.Name = "ColOfficeEst";
+            this.ColOfficeEst.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColOfficeEst.Width = 150;
+            // 
+            // ColOff
+            // 
+            this.ColOff.HeaderText = "NA";
+            this.ColOff.Name = "ColOff";
+            this.ColOff.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColOff.Width = 5;
+            // 
+            // ColContractor1
+            // 
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.ColContractor1.DefaultCellStyle = dataGridViewCellStyle28;
+            this.ColContractor1.HeaderText = "Bidder1";
+            this.ColContractor1.Name = "ColContractor1";
+            this.ColContractor1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColContractor1.Width = 150;
+            // 
+            // ColContractor11
+            // 
+            this.ColContractor11.HeaderText = "NA";
+            this.ColContractor11.Name = "ColContractor11";
+            this.ColContractor11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColContractor11.Width = 5;
+            // 
+            // ColContractor2
+            // 
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.ColContractor2.DefaultCellStyle = dataGridViewCellStyle29;
+            this.ColContractor2.HeaderText = "Bidder2";
+            this.ColContractor2.Name = "ColContractor2";
+            this.ColContractor2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColContractor2.Width = 150;
+            // 
+            // ColContractor22
+            // 
+            this.ColContractor22.HeaderText = "NA";
+            this.ColContractor22.Name = "ColContractor22";
+            this.ColContractor22.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColContractor22.Width = 5;
+            // 
+            // ColContractor3
+            // 
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.ColContractor3.DefaultCellStyle = dataGridViewCellStyle30;
+            this.ColContractor3.HeaderText = "Bidder3";
+            this.ColContractor3.Name = "ColContractor3";
+            this.ColContractor3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColContractor3.Width = 150;
+            // 
             // FrmDipGen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -666,7 +715,6 @@
         private System.Windows.Forms.TextBox TxtProjectName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxtFinalBill_GT;
         private System.Windows.Forms.TextBox TxtWorkCompletion;
@@ -698,14 +746,22 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox TxtDivision;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColDescriptions;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColDate;
         private System.Windows.Forms.ToolStripMenuItem savedipToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loaddipToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.TextBox TxtFinalBillNepaliWords;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox TxtFinalBillEnglishWords;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.TextBox TxtFYNepali;
+        private System.Windows.Forms.TextBox TxtWorkcompletionNepali;
+        private System.Windows.Forms.TextBox TxtFinalBill_GT_Nepali;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDescriptions;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSN1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColOfficeEst;
@@ -715,11 +771,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColContractor2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColContractor22;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColContractor3;
-        private System.Windows.Forms.TextBox TxtFinalBillNepaliWords;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox TxtFinalBillEnglishWords;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 
