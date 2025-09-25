@@ -130,10 +130,31 @@ namespace CSAY_DipGen
             }
         }
 
+        public (string Name, string Address) ParseContractor(string contractorFull)
+        {
+            if (string.IsNullOrWhiteSpace(contractorFull))
+                return (string.Empty, string.Empty);
+
+            int commaIndex = contractorFull.IndexOf(',');
+            if (commaIndex >= 0)
+            {
+                string name = contractorFull.Substring(0, commaIndex).Trim();
+                string address = contractorFull.Substring(commaIndex + 1).Trim();
+                return (name, address);
+            }
+            else
+            {
+                // No comma -> only name
+                return (contractorFull.Trim(), string.Empty);
+            }
+        }
+
+
         private Dictionary<string, string> GetReplacementDictionary()
         {
             double num;
-            string num2words;
+            string num2words, contractorFull, Rank1ContractorColName;
+            string Rank1_Name, Rank1_Address, Rank1_Amount, Rank1_diff, Rank1_percent;
             var dict = new Dictionary<string, string>();
             CSAYNumToWord cnw = new CSAYNumToWord();
             
@@ -157,11 +178,68 @@ namespace CSAY_DipGen
             dict["???Context2???"] = TxtContext2.Text;
             dict["<<LVL2_NAME_POSITION>>"] = TxtLvl2.Text;
 
+            //Dar rate letter_office
+            contractorFull = dataGridViewCC.Rows[0].Cells["ColContractor1"].Value?.ToString();
+            var (Contractor1_Name, Contractor1_Address) = ParseContractor(contractorFull);
+            dict["???Date_of_DarRate1???"] = dataGridViewDate.Rows[5].Cells["ColDate"].Value?.ToString();
+            dict["???Contractor1_Name???"] = Contractor1_Name;
+            dict["???Contractor1_Address???"] = Contractor1_Address;
+            dict["<<LVL3_NAME_POSITION>>"] = TxtLvl3.Text;
+
+            contractorFull = dataGridViewCC.Rows[0].Cells["ColContractor2"].Value?.ToString();
+            var (Contractor2_Name, Contractor2_Address) = ParseContractor(contractorFull);
+            dict["???Date_of_DarRate2???"] = dataGridViewDate.Rows[6].Cells["ColDate"].Value?.ToString();
+            dict["???Contractor2_Name???"] = Contractor2_Name;
+            dict["???Contractor2_Address???"] = Contractor2_Address;
+
+            contractorFull = dataGridViewCC.Rows[0].Cells["ColContractor3"].Value?.ToString();
+            var (Contractor3_Name, Contractor3_Address) = ParseContractor(contractorFull);
+            dict["???Date_of_DarRate3???"] = dataGridViewDate.Rows[7].Cells["ColDate"].Value?.ToString();
+            dict["???Contractor3_Name???"] = Contractor3_Name;
+            dict["???Contractor3_Address???"] = Contractor3_Address;
+
+            //Dar rate letter_Contractor
+            dict["???Date_of_DarRate11???"] = dataGridViewDate.Rows[8].Cells["ColDate"].Value?.ToString();
+            dict["???Date_of_DarRate22???"] = dataGridViewDate.Rows[9].Cells["ColDate"].Value?.ToString();
+            dict["???Date_of_DarRate33???"] = dataGridViewDate.Rows[10].Cells["ColDate"].Value?.ToString();
+
+            //Comparative chart preparation
+            dict["???Date_of_CCP???"] = dataGridViewDate.Rows[12].Cells["ColDate"].Value?.ToString();
+            dict["???C1_Amount???"] = dataGridViewCC.Rows[3].Cells["ColContractor1"].Value?.ToString();
+            dict["???C1_diff???"] = dataGridViewCC.Rows[4].Cells["ColContractor1"].Value?.ToString();
+            dict["???C1_per???"] = dataGridViewCC.Rows[5].Cells["ColContractor1"].Value?.ToString();
+
+            dict["???C2_Amount???"] = dataGridViewCC.Rows[3].Cells["ColContractor2"].Value?.ToString();
+            dict["???C2_diff???"] = dataGridViewCC.Rows[4].Cells["ColContractor2"].Value?.ToString();
+            dict["???C2_per???"] = dataGridViewCC.Rows[5].Cells["ColContractor2"].Value?.ToString();
+
+            dict["???C3_Amount???"] = dataGridViewCC.Rows[3].Cells["ColContractor3"].Value?.ToString();
+            dict["???C3_diff???"] = dataGridViewCC.Rows[4].Cells["ColContractor3"].Value?.ToString();
+            dict["???C3_per???"] = dataGridViewCC.Rows[5].Cells["ColContractor3"].Value?.ToString();
+
+            Rank1ContractorColName = RankOneContractorColumnName();
 
 
+
+            //Comparative chart preparation
+            dict["???Date_of_CCC???"] = dataGridViewDate.Rows[13].Cells["ColDate"].Value?.ToString();
 
             return dict;
         }
+
+        public string RankOneContractorColumnName()
+        {
+            int Rank1, Rank2;
+            Rank1 = Convert.ToInt32(dataGridViewCC.Rows[6].Cells["ColContractor1"].Value?.ToString());
+            Rank2 = Convert.ToInt32(dataGridViewCC.Rows[6].Cells["ColContractor2"].Value?.ToString());
+            //Rank3 = Convert.ToInt32(dataGridViewCC.Rows[6].Cells["ColContractor3"].Value?.ToString());
+
+            if (Rank1 == 1) return "ColContractor1";
+            else if (Rank2 == 2) return "ColContractor2";
+            else return "ColContractor3";
+
+        }
+
 
         private void generateToolStripMenuItem_Click(object sender, EventArgs e)
         {
