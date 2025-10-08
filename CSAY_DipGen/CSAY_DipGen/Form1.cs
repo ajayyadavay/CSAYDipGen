@@ -39,7 +39,7 @@ namespace CSAY_DipGen
         {
             TxtProjectName.Text = "";
             TxtFY.Text = "";
-            TxtWorkCompletion.Text = "";
+            TxtInWorkCompletion.Text = "";
             TxtFinalBill_GT.Text = "";
 
             for (int i = 0; i < 22; i++)
@@ -122,7 +122,7 @@ namespace CSAY_DipGen
         {
             try
             {
-                TxtWorkcompletionNepali.Text = TxtWorkCompletion.Text;
+                TxtInWorkcompletionNepali.Text = TxtInWorkCompletion.Text;
             }
             catch
             {
@@ -154,7 +154,7 @@ namespace CSAY_DipGen
         {
             double num;
             string num2words, contractorFull, Rank1ContractorColName;
-            string Rank1_Name, Rank1_Address, Rank1_Amount, Rank1_diff, Rank1_percent;
+            //string Rank1_Name, Rank1_Address, Rank1_Amount, Rank1_diff, Rank1_percent;
             var dict = new Dictionary<string, string>();
             CSAYNumToWord cnw = new CSAYNumToWord();
             
@@ -218,11 +218,45 @@ namespace CSAY_DipGen
             dict["???C3_per???"] = dataGridViewCC.Rows[5].Cells["ColContractor3"].Value?.ToString();
 
             Rank1ContractorColName = RankOneContractorColumnName();
+            contractorFull = dataGridViewCC.Rows[0].Cells[Rank1ContractorColName].Value?.ToString();
+            var (R1_Name, R1_Address) = ParseContractor(contractorFull);
+            dict["???R1_Name???"] = R1_Name;
+            dict["???R1_Address???"] = R1_Address;
 
+            dict["???R1_Amount???"] = dataGridViewCC.Rows[3].Cells[Rank1ContractorColName].Value?.ToString();
+            dict["???R1_diff???"] = dataGridViewCC.Rows[4].Cells[Rank1ContractorColName].Value?.ToString();
+            dict["???R1_per???"] = dataGridViewCC.Rows[5].Cells[Rank1ContractorColName].Value?.ToString();
+
+            double temp_amount = Convert.ToDouble(dataGridViewCC.Rows[3].Cells[Rank1ContractorColName].Value?.ToString());
+            string temp_words = cnw.ConvertNumberToNepaliWord(temp_amount);
+            dict["???R1_words???"] = temp_words;
 
 
             //Comparative chart preparation
             dict["???Date_of_CCC???"] = dataGridViewDate.Rows[13].Cells["ColDate"].Value?.ToString();
+
+            //letter requesting contractor to sign contract
+            dict["???Date_of_ReqCtr???"] = dataGridViewDate.Rows[14].Cells["ColDate"].Value?.ToString();
+
+            //letter from contractor to sign contract
+            dict["???Date_of_CtrPrsnt???"] = dataGridViewDate.Rows[15].Cells["ColDate"].Value?.ToString();
+
+            //Contract agreement
+            dict["???Date_of_CtrSign???"] = dataGridViewDate.Rows[16].Cells["ColDate"].Value?.ToString();
+            dict["???Date_of_WorkStart???"] = dataGridViewDate.Rows[17].Cells["ColDate"].Value?.ToString();
+            dict["???Date_of_IntendWorkComplete???"] = TxtInWorkcompletionNepali.Text;
+
+            //Work completion letter submitted by contractor
+            dict["???Date_of_WorkComplete???"] = dataGridViewDate.Rows[18].Cells["ColDate"].Value?.ToString();
+
+            //Tippani of bill preparation
+            dict["???Bill_Date???"] = dataGridViewDate.Rows[20].Cells["ColDate"].Value?.ToString();
+            dict["???Bill_Amount???"] = TxtFinalBill_GT_Nepali.Text;
+            dict["???BILL_NEPALI_WORDS???"] = TxtFinalBillNepaliWords.Text;
+
+            //Tippani of bill checking
+            dict["???Bill_Chk_Date???"] = dataGridViewDate.Rows[21].Cells["ColDate"].Value?.ToString();
+
 
             return dict;
         }
@@ -246,7 +280,19 @@ namespace CSAY_DipGen
             string Cur_Dir = Environment.CurrentDirectory;
             
             string templatePath = Cur_Dir + "\\DipGenFileFormat\\" + "DipGenFileFormat.docx";
-            string outputPath = Cur_Dir + "\\DipGenOutput\\" + "DipGenOutputFile.docx";
+            //string outputPath = Cur_Dir + "\\DipGenOutput\\" + "DipGenOutputFile.docx";
+
+            string outputPath = "";
+            SaveFileDialog savefiledialog1 = new SaveFileDialog();
+            savefiledialog1.Filter = "Document (*.docx)|*.docx";//"Text File(*.txt)|*.txt|Excel Sheet(*.xls)|*.xls|All Files(*.*)|*.*";
+            savefiledialog1.FilterIndex = 1;
+
+            if (savefiledialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                outputPath = savefiledialog1.FileName;
+            }
+            else if (savefiledialog1.ShowDialog() == System.Windows.Forms.DialogResult.Cancel) return;
+
 
             var replacements = GetReplacementDictionary();
 
@@ -277,6 +323,113 @@ namespace CSAY_DipGen
                 wordApp.Quit();
             }
 
+        }
+
+        private void ShowAboutDialog()
+        {
+            Form aboutForm = new Form();
+            aboutForm.Text = "About This Software";
+            aboutForm.Size = new Size(600, 450);
+            aboutForm.StartPosition = FormStartPosition.CenterScreen;
+            aboutForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+            aboutForm.MaximizeBox = false;
+            aboutForm.MinimizeBox = false;
+            aboutForm.BackColor = Color.WhiteSmoke;
+
+            // Title
+            Label titleLabel = new Label();
+            titleLabel.Text = "CSAY DipGen Software Information";
+            titleLabel.Font = new Font("Segoe UI", 16, FontStyle.Bold);
+            titleLabel.ForeColor = Color.FromArgb(0, 120, 215);
+            titleLabel.AutoSize = true;
+            titleLabel.Location = new Point(120, 30);
+
+            // Created by
+            Label createdBy = new Label();
+            createdBy.Text = "Created by: Ajay Yadav";
+            createdBy.Font = new Font("Segoe UI", 11);
+            createdBy.Location = new Point(40, 90);
+            createdBy.AutoSize = true;
+
+            // Version
+            Label version = new Label();
+            version.Text = "Version: 1.0.0 (2025)";
+            version.Font = new Font("Segoe UI", 11);
+            version.Location = new Point(40, 120);
+            version.AutoSize = true;
+
+            // Download link
+            LinkLabel download = new LinkLabel();
+            download.Text = "Download Software: https://github.com/ajayyadavay";
+            download.Font = new Font("Segoe UI", 10);
+            download.LinkColor = Color.Blue;
+            download.Location = new Point(40, 150);
+            download.AutoSize = true;
+            download.LinkClicked += (s, e) => Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/ajayyadavay",
+                UseShellExecute = true
+            });
+
+            // Email
+            LinkLabel email = new LinkLabel();
+            email.Text = "Email: civil.ajayyadav@gmail.com";
+            email.Font = new Font("Segoe UI", 10);
+            email.LinkColor = Color.Blue;
+            email.Location = new Point(40, 180);
+            email.AutoSize = true;
+            email.LinkClicked += (s, e) => Process.Start(new ProcessStartInfo
+            {
+                FileName = "mailto:civil.ajayyadav@gmail.com",
+                UseShellExecute = true
+            });
+
+            // How to use section
+            Label howToUse = new Label();
+            howToUse.Text = "How to use?";
+            howToUse.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+            howToUse.ForeColor = Color.FromArgb(0, 90, 180);
+            howToUse.Location = new Point(40, 220);
+            howToUse.AutoSize = true;
+
+            Label steps = new Label();
+            steps.Text = "1. Open the software and enter all your data in text boxes and table.\n" +
+                         "2. Save *.dip file to access later via Load *.dip (optional).\n" +
+                         "3. Click File>Generate from template (*.docx).\n" +
+                         "4. The file will be saved in selected location.";
+            steps.Font = new Font("Segoe UI", 10);
+            steps.Location = new Point(60, 250);
+            steps.Size = new Size(480, 100);
+
+            // OK Button
+            Button okButton = new Button();
+            okButton.Text = "OK";
+            okButton.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            okButton.BackColor = Color.FromArgb(0, 120, 215);
+            okButton.ForeColor = Color.White;
+            okButton.FlatStyle = FlatStyle.Flat;
+            okButton.Size = new Size(100, 35);
+            okButton.Location = new Point(aboutForm.ClientSize.Width / 2 - 50, 350);
+            okButton.Click += (s, e) => aboutForm.Close();
+
+            // Add controls
+            aboutForm.Controls.Add(titleLabel);
+            aboutForm.Controls.Add(createdBy);
+            aboutForm.Controls.Add(version);
+            aboutForm.Controls.Add(download);
+            aboutForm.Controls.Add(email);
+            aboutForm.Controls.Add(howToUse);
+            aboutForm.Controls.Add(steps);
+            aboutForm.Controls.Add(okButton);
+
+            // Show as modal dialog
+            aboutForm.ShowDialog();
+        }
+
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowAboutDialog();
         }
 
         public void Generate_CC_Datagridview()
@@ -428,7 +581,7 @@ namespace CSAY_DipGen
         {
             Project_Name = TxtProjectName.Text;
             FY = TxtFY.Text;
-            Work_Completion_date = TxtWorkCompletion.Text;
+            Work_Completion_date = TxtInWorkCompletion.Text;
             Final_Bill_GT = TxtFinalBill_GT.Text;
 
             for (int i = 0; i < 22; i++)
@@ -552,7 +705,7 @@ namespace CSAY_DipGen
 
                     TxtProjectName.Text = DipGenIn.Project_Name_ser;
                     TxtFY.Text = DipGenIn.FY_ser;
-                    TxtWorkCompletion.Text = DipGenIn.Work_Completion_date_ser;
+                    TxtInWorkCompletion.Text = DipGenIn.Work_Completion_date_ser;
                     TxtFinalBill_GT.Text = DipGenIn.Final_Bill_GT_ser;
 
                     for (int i = 0; i < 22; i++)

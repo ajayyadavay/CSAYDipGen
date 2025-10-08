@@ -18,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "F:\\VBStudio\\CSAY_DipGEN\\CSAY_DipGen\\CSAY_DipGen\\Form1.cs",
+              "RelativeDocumentMoniker": "CSAY_DipGen\\Form1.cs",
+              "ToolTip": "F:\\VBStudio\\CSAY_DipGEN\\CSAY_DipGen\\CSAY_DipGen\\Form1.cs",
+              "RelativeToolTip": "CSAY_DipGen\\Form1.cs",
+              "ViewState": "AgIAAHoBAAAAAAAAAAAowIwBAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-21T10:25:20.972Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -31,19 +44,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-23T07:07:19.082Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "F:\\VBStudio\\CSAY_DipGEN\\CSAY_DipGen\\CSAY_DipGen\\Form1.cs",
-              "RelativeDocumentMoniker": "CSAY_DipGen\\Form1.cs",
-              "ToolTip": "F:\\VBStudio\\CSAY_DipGEN\\CSAY_DipGen\\CSAY_DipGen\\Form1.cs",
-              "RelativeToolTip": "CSAY_DipGen\\Form1.cs",
-              "ViewState": "AgIAAJcAAAAAAAAAAAAwwJwAAABWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-21T10:25:20.972Z",
-              "EditorCaption": ""
             }
           ]
         }
