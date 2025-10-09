@@ -13,11 +13,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 // Interop
 using Word = Microsoft.Office.Interop.Word;
+using OpenAI;
+using OpenAI.Chat;
+using System.Net.Http;
+using System.Text.Json;
+using OpenAI.Models;
+using OpenAI.Responses;
 
 namespace CSAY_DipGen
 {
     public partial class FrmDipGen : Form
     {
+        private OpenAIClient client;
+
         public string[] Date_Value = new string[50];
         public string[,] CC_Value = new string[10,50];
         string Project_Name, FY, Work_Completion_date, Final_Bill_GT;
@@ -33,6 +41,12 @@ namespace CSAY_DipGen
         {
             Generate_Date_Datagridview();
             Generate_CC_Datagridview();
+
+            // Add ComboBox items
+            CmbMode.Items.Clear();
+            CmbMode.Items.Add("Online (ChatGPT API)");
+            CmbMode.SelectedIndex = 0; // default
+
         }
 
         private void newToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -275,56 +289,6 @@ namespace CSAY_DipGen
         }
 
 
-        private void generateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string Cur_Dir = Environment.CurrentDirectory;
-            
-            string templatePath = Cur_Dir + "\\DipGenFileFormat\\" + "DipGenFileFormat.docx";
-            //string outputPath = Cur_Dir + "\\DipGenOutput\\" + "DipGenOutputFile.docx";
-
-            string outputPath = "";
-            SaveFileDialog savefiledialog1 = new SaveFileDialog();
-            savefiledialog1.Filter = "Document (*.docx)|*.docx";//"Text File(*.txt)|*.txt|Excel Sheet(*.xls)|*.xls|All Files(*.*)|*.*";
-            savefiledialog1.FilterIndex = 1;
-
-            if (savefiledialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                outputPath = savefiledialog1.FileName;
-            }
-            else if (savefiledialog1.ShowDialog() == System.Windows.Forms.DialogResult.Cancel) return;
-
-
-            var replacements = GetReplacementDictionary();
-
-            var wordApp = new Word.Application();
-            Word.Document doc = null;
-            try
-            {
-                doc = wordApp.Documents.Open(templatePath);
-
-                foreach (var pair in replacements)
-                {
-                    Word.Find findObject = wordApp.Selection.Find;
-                    findObject.ClearFormatting();
-                    findObject.Text = pair.Key;
-                    findObject.Replacement.ClearFormatting();
-                    findObject.Replacement.Text = pair.Value ?? "";
-
-                    object replaceAll = Word.WdReplace.wdReplaceAll;
-                    findObject.Execute(Replace: ref replaceAll);
-                }
-
-                doc.SaveAs2(outputPath);
-                MessageBox.Show("Document created !");
-            }
-            finally
-            {
-                doc?.Close();
-                wordApp.Quit();
-            }
-
-        }
-
         private void ShowAboutDialog()
         {
             Form aboutForm = new Form();
@@ -430,6 +394,225 @@ namespace CSAY_DipGen
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowAboutDialog();
+        }
+
+        private void CmbMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CmbMode.SelectedItem.ToString() == "Online (ChatGPT API)")
+            {
+                // Select OpenAI tab
+                tabControl2.SelectedTab = tabOpenAI;
+
+                // Disable all others except OpenAI
+                foreach (TabPage tab in tabControl2.TabPages)
+                    tab.Enabled = (tab == tabOpenAI);
+            }
+        }
+
+        private async Task GenerateTippaniAsync(Button btnGenerate, TextBox txtContext)
+        {
+            btnGenerate.Enabled = false;
+            txtContext.Enabled = false;
+            lblStatus.Text = "Generating Tippani, please wait...";
+
+            try
+            {
+                string context = txtContext.Text.Trim();
+                if (string.IsNullOrEmpty(context))
+                {
+                    MessageBox.Show("Please enter context or instruction.", "Info",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string tippani = "";
+
+                if (CmbMode.SelectedIndex == 0)
+                    tippani = await GenerateOnlineTippani(context);
+                
+                txtContext.Text = tippani;
+            }
+            catch (Exception ex)
+            {
+                txtContext.Text = "Error: " + ex.Message;
+            }
+            finally
+            {
+                btnGenerate.Enabled = true;
+                txtContext.Enabled = true;
+                lblStatus.Text = "";
+            }
+        }
+
+
+        // ------------------------------
+        // ONLINE MODE: ChatGPT API
+        // ------------------------------
+        private async Task<string> GenerateOnlineTippani(string context)
+        {
+            string apiKey = TxtAPIKey.Text.Trim();
+            if (string.IsNullOrEmpty(apiKey))
+            {
+                MessageBox.Show("Please enter your OpenAI API Key.", "API Key Required",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
+
+            try
+            {
+                // Initialize the OpenAI client
+                var openAIClient = new OpenAIClient(apiKey);
+
+                // Create a ChatClient from the main client
+                var chatClient = openAIClient.GetChatClient("gpt-3.5-turbo"); //gpt-3.5-turbo; gpt-4o-mini
+
+                MessageBox.Show("open ai key");
+
+                var messages = new List<ChatMessage>
+                {
+                    new SystemChatMessage("You are an expert government officer skilled in writing official Tippanis in Nepali-English mixed formal tone."),
+                    new UserChatMessage(context)
+                };
+
+                // Send a chat completion request
+                var response = await chatClient.CompleteChatAsync(
+                    //model: "gpt-4o-mini",
+                    messages: messages
+                );
+
+                MessageBox.Show("open ai message");
+
+                ////////////////////////////////////
+                /*
+                // Correct syntax for older (v2.x) OpenAI-DotNet library
+                client = new OpenAIClient(apiKey);
+
+                // Using the explicit concrete message types (SystemChatMessage and UserChatMessage)
+                /*var messages = new List<ChatMessage>
+                {
+                    new SystemChatMessage("You are an expert government officer skilled in writing official Tippanis in Nepali-English mixed formal tone."),
+                    new UserChatMessage(context)
+                };*/
+
+                /*
+                // Create chat completion
+                var response = await client.Chat.Completions.CreateAsync(
+                    model: "gpt-4o-mini",
+                    messages: messages
+                );
+                */
+                // FIX: Changing the property from 'Api' to 'Chat'. This is the next most likely property in the older v2.x library.
+                //var response = await client.Chat.CreateChatCompletionAsync(messages, "gpt-4o-mini");
+
+                // Assuming FirstChoice is still available
+                //return response.FirstChoice.Message.Content ?? "No response generated.";
+
+                return response.Value.Content[0].Text;
+            }
+            // FIX: Reverting to general Exception catch block since OpenAI.ApiException is not found
+            catch (Exception ex)
+            {
+                // Re-throw with a clearer message for the main catch block
+                // Note: The specific API error status will now be inside ex.Message
+                throw new Exception($"OpenAI API Error: Check your API Key, billing status, or network connection. Details: {ex.Message}", ex);
+            }
+        }
+
+        private async void BtnGenerate1_Click(object sender, EventArgs e)
+        {
+            await GenerateTippaniAsync(BtnGenerate1, TxtContext1);
+        }
+
+        private async void BtnGenerate2_Click(object sender, EventArgs e)
+        {
+            await GenerateTippaniAsync(BtnGenerate2, TxtContext2);
+        }
+
+        private void GenerateFiles(string Filename_of_Format_without_extension, string msg)
+        {
+            
+            string Cur_Dir = Environment.CurrentDirectory;
+
+            string templatePath = Cur_Dir + "\\DipGenFileFormat\\" + Filename_of_Format_without_extension + ".docx";
+            //string templatePath = Cur_Dir + "\\DipGenFileFormat\\" + "DipGenFileFormat.docx";
+            //string outputPath = Cur_Dir + "\\DipGenOutput\\" + "DipGenOutputFile.docx";
+
+            string outputPath = "";
+            SaveFileDialog savefiledialog1 = new SaveFileDialog();
+            savefiledialog1.Filter = "Document (*.docx)|*.docx";//"Text File(*.txt)|*.txt|Excel Sheet(*.xls)|*.xls|All Files(*.*)|*.*";
+            savefiledialog1.FilterIndex = 1;
+
+            //Set custom title text
+            savefiledialog1.Title = "Save As - " + Filename_of_Format_without_extension;
+
+            if (savefiledialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                outputPath = savefiledialog1.FileName;
+            }
+            else if (savefiledialog1.ShowDialog() == System.Windows.Forms.DialogResult.Cancel) return;
+
+
+            var replacements = GetReplacementDictionary();
+
+            var wordApp = new Word.Application();
+            Word.Document doc = null;
+            try
+            {
+                doc = wordApp.Documents.Open(templatePath);
+
+                foreach (var pair in replacements)
+                {
+                    Word.Find findObject = wordApp.Selection.Find;
+                    findObject.ClearFormatting();
+                    findObject.Text = pair.Key;
+                    findObject.Replacement.ClearFormatting();
+                    findObject.Replacement.Text = pair.Value ?? "";
+
+                    object replaceAll = Word.WdReplace.wdReplaceAll;
+                    findObject.Execute(Replace: ref replaceAll);
+                }
+
+                doc.SaveAs2(outputPath);
+                
+                MessageBox.Show(msg);
+            }
+            finally
+            {
+                doc?.Close();
+                wordApp.Quit();
+            }
+        }
+
+        private void singleFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string msg = "Single combined Document created !";
+            GenerateFiles("DipGenFileFormat", msg);
+        }
+
+        private void tippaniAndAgreementdocxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string msg = "Tippani and agreement Document created !";
+            GenerateFiles("Tippani_and_Agreement", msg);
+        }
+
+        private void lettersFromOfficedocxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string msg = "Letter from office Document created !";
+            GenerateFiles("Letter_From_Office", msg);
+        }
+
+        private void lettersToOfficedocxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string msg = "Letter to office Document created !";
+            GenerateFiles("Letter_to_Office", msg);
+        }
+
+        private void allThreeFilesIndividuallyAtOncedocxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tippaniAndAgreementdocxToolStripMenuItem_Click(sender, e);
+            lettersFromOfficedocxToolStripMenuItem_Click(sender, e);
+            lettersToOfficedocxToolStripMenuItem_Click(sender, e);
+
         }
 
         public void Generate_CC_Datagridview()

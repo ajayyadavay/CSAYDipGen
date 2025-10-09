@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtFinalBill_GT_Nepali = new System.Windows.Forms.TextBox();
             this.TxtInWorkcompletionNepali = new System.Windows.Forms.TextBox();
@@ -52,7 +52,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabOpenAI = new System.Windows.Forms.TabPage();
+            this.TxtAPIKey = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.CmbMode = new System.Windows.Forms.ComboBox();
+            this.lblMode = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.BtnGenerate2 = new System.Windows.Forms.Button();
+            this.BtnGenerate1 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.TxtDivision = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -87,17 +97,26 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.generateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.savedipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loaddipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.singleFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tippaniAndAgreementdocxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lettersFromOfficedocxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lettersToOfficedocxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.allThreeFilesIndividuallyAtOncedocxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabOpenAI.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDate)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
@@ -283,6 +302,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.dataGridViewDate);
             this.tabPage1.Controls.Add(this.dataGridViewCC);
@@ -295,8 +315,80 @@
             this.tabPage1.Text = "Project Info";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tabControl2);
+            this.groupBox3.Controls.Add(this.CmbMode);
+            this.groupBox3.Controls.Add(this.lblMode);
+            this.groupBox3.Location = new System.Drawing.Point(933, 643);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(373, 381);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Use AI to Write Tippani";
+            this.groupBox3.Visible = false;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabOpenAI);
+            this.tabControl2.Location = new System.Drawing.Point(10, 112);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(357, 255);
+            this.tabControl2.TabIndex = 2;
+            // 
+            // tabOpenAI
+            // 
+            this.tabOpenAI.Controls.Add(this.TxtAPIKey);
+            this.tabOpenAI.Controls.Add(this.label14);
+            this.tabOpenAI.Location = new System.Drawing.Point(4, 27);
+            this.tabOpenAI.Name = "tabOpenAI";
+            this.tabOpenAI.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOpenAI.Size = new System.Drawing.Size(349, 224);
+            this.tabOpenAI.TabIndex = 1;
+            this.tabOpenAI.Text = "OpenAI";
+            this.tabOpenAI.UseVisualStyleBackColor = true;
+            // 
+            // TxtAPIKey
+            // 
+            this.TxtAPIKey.Location = new System.Drawing.Point(9, 29);
+            this.TxtAPIKey.Multiline = true;
+            this.TxtAPIKey.Name = "TxtAPIKey";
+            this.TxtAPIKey.Size = new System.Drawing.Size(334, 170);
+            this.TxtAPIKey.TabIndex = 1;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 7);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(111, 18);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "OpenAI API Key";
+            // 
+            // CmbMode
+            // 
+            this.CmbMode.FormattingEnabled = true;
+            this.CmbMode.Location = new System.Drawing.Point(163, 24);
+            this.CmbMode.Name = "CmbMode";
+            this.CmbMode.Size = new System.Drawing.Size(204, 26);
+            this.CmbMode.TabIndex = 1;
+            this.CmbMode.SelectedIndexChanged += new System.EventHandler(this.CmbMode_SelectedIndexChanged);
+            // 
+            // lblMode
+            // 
+            this.lblMode.AutoSize = true;
+            this.lblMode.Location = new System.Drawing.Point(7, 24);
+            this.lblMode.Name = "lblMode";
+            this.lblMode.Size = new System.Drawing.Size(140, 18);
+            this.lblMode.TabIndex = 0;
+            this.lblMode.Text = "Select Mode/Model:";
+            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lblStatus);
+            this.groupBox2.Controls.Add(this.BtnGenerate2);
+            this.groupBox2.Controls.Add(this.BtnGenerate1);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.TxtDivision);
             this.groupBox2.Controls.Add(this.label9);
@@ -311,10 +403,42 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(6, 527);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(915, 436);
+            this.groupBox2.Size = new System.Drawing.Size(915, 525);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Context";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(6, 488);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(54, 18);
+            this.lblStatus.TabIndex = 14;
+            this.lblStatus.Text = "Status:";
+            this.lblStatus.Visible = false;
+            // 
+            // BtnGenerate2
+            // 
+            this.BtnGenerate2.Location = new System.Drawing.Point(3, 388);
+            this.BtnGenerate2.Name = "BtnGenerate2";
+            this.BtnGenerate2.Size = new System.Drawing.Size(99, 77);
+            this.BtnGenerate2.TabIndex = 13;
+            this.BtnGenerate2.Text = "Generate Context2 (AI model)";
+            this.BtnGenerate2.UseVisualStyleBackColor = true;
+            this.BtnGenerate2.Visible = false;
+            this.BtnGenerate2.Click += new System.EventHandler(this.BtnGenerate2_Click);
+            // 
+            // BtnGenerate1
+            // 
+            this.BtnGenerate1.Location = new System.Drawing.Point(3, 231);
+            this.BtnGenerate1.Name = "BtnGenerate1";
+            this.BtnGenerate1.Size = new System.Drawing.Size(99, 77);
+            this.BtnGenerate1.TabIndex = 12;
+            this.BtnGenerate1.Text = "Generate Context1 (AI model)";
+            this.BtnGenerate1.UseVisualStyleBackColor = true;
+            this.BtnGenerate1.Visible = false;
+            this.BtnGenerate1.Click += new System.EventHandler(this.BtnGenerate1_Click);
             // 
             // label10
             // 
@@ -327,69 +451,70 @@
             // 
             // TxtDivision
             // 
-            this.TxtDivision.Location = new System.Drawing.Point(263, 121);
+            this.TxtDivision.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDivision.Location = new System.Drawing.Point(263, 124);
             this.TxtDivision.Name = "TxtDivision";
-            this.TxtDivision.Size = new System.Drawing.Size(632, 24);
+            this.TxtDivision.Size = new System.Drawing.Size(632, 22);
             this.TxtDivision.TabIndex = 10;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(0, 303);
+            this.label9.Location = new System.Drawing.Point(6, 328);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 72);
+            this.label9.Size = new System.Drawing.Size(89, 54);
             this.label9.TabIndex = 9;
-            this.label9.Text = "Est. \r\nTippani \r\nContext\r\n(Lvl 2)";
+            this.label9.Text = "Est. Tippani \r\nContext\r\n(Lvl 2)";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 185);
+            this.label8.Location = new System.Drawing.Point(6, 174);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 72);
+            this.label8.Size = new System.Drawing.Size(89, 54);
             this.label8.TabIndex = 8;
-            this.label8.Text = "Est. \r\nTippani \r\nContext\r\n(Lvl 1)";
+            this.label8.Text = "Est. Tippani \r\nContext\r\n(Lvl 1)";
             // 
             // TxtContext2
             // 
             this.TxtContext2.Font = new System.Drawing.Font("Kalimati", 9F);
-            this.TxtContext2.Location = new System.Drawing.Point(65, 286);
+            this.TxtContext2.Location = new System.Drawing.Point(108, 325);
             this.TxtContext2.Multiline = true;
             this.TxtContext2.Name = "TxtContext2";
-            this.TxtContext2.Size = new System.Drawing.Size(830, 109);
+            this.TxtContext2.Size = new System.Drawing.Size(787, 140);
             this.TxtContext2.TabIndex = 7;
             // 
             // TxtContext1
             // 
             this.TxtContext1.Font = new System.Drawing.Font("Kalimati", 9F);
-            this.TxtContext1.Location = new System.Drawing.Point(65, 171);
+            this.TxtContext1.Location = new System.Drawing.Point(108, 171);
             this.TxtContext1.Multiline = true;
             this.TxtContext1.Name = "TxtContext1";
-            this.TxtContext1.Size = new System.Drawing.Size(830, 109);
+            this.TxtContext1.Size = new System.Drawing.Size(787, 146);
             this.TxtContext1.TabIndex = 6;
             // 
             // TxtLvl3
             // 
-            this.TxtLvl3.Font = new System.Drawing.Font("Kalimati", 9F);
-            this.TxtLvl3.Location = new System.Drawing.Point(263, 87);
+            this.TxtLvl3.Font = new System.Drawing.Font("Kalimati", 9.75F);
+            this.TxtLvl3.Location = new System.Drawing.Point(263, 89);
             this.TxtLvl3.Name = "TxtLvl3";
-            this.TxtLvl3.Size = new System.Drawing.Size(632, 28);
+            this.TxtLvl3.Size = new System.Drawing.Size(632, 29);
             this.TxtLvl3.TabIndex = 5;
             // 
             // TxtLvl2
             // 
-            this.TxtLvl2.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.TxtLvl2.Font = new System.Drawing.Font("Kalimati", 9.75F);
             this.TxtLvl2.Location = new System.Drawing.Point(263, 57);
             this.TxtLvl2.Name = "TxtLvl2";
-            this.TxtLvl2.Size = new System.Drawing.Size(632, 28);
+            this.TxtLvl2.Size = new System.Drawing.Size(632, 29);
             this.TxtLvl2.TabIndex = 4;
             // 
             // TxtLvl1
             // 
-            this.TxtLvl1.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.TxtLvl1.Font = new System.Drawing.Font("Kalimati", 9.75F);
             this.TxtLvl1.Location = new System.Drawing.Point(263, 23);
             this.TxtLvl1.Name = "TxtLvl1";
-            this.TxtLvl1.Size = new System.Drawing.Size(632, 28);
+            this.TxtLvl1.Size = new System.Drawing.Size(632, 29);
             this.TxtLvl1.TabIndex = 3;
             // 
             // label7
@@ -454,9 +579,9 @@
             // 
             // ColDate
             // 
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Kalimati", 8.25F);
-            this.ColDate.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle66.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle66.Font = new System.Drawing.Font("Kalimati", 8.25F);
+            this.ColDate.DefaultCellStyle = dataGridViewCellStyle66;
             this.ColDate.HeaderText = "Date/No.";
             this.ColDate.Name = "ColDate";
             this.ColDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -518,8 +643,8 @@
             // 
             // ColOfficeEst
             // 
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Kalimati", 9F);
-            this.ColOfficeEst.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle67.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.ColOfficeEst.DefaultCellStyle = dataGridViewCellStyle67;
             this.ColOfficeEst.HeaderText = "Office";
             this.ColOfficeEst.Name = "ColOfficeEst";
             this.ColOfficeEst.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -534,8 +659,8 @@
             // 
             // ColContractor1
             // 
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Kalimati", 9F);
-            this.ColContractor1.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle68.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.ColContractor1.DefaultCellStyle = dataGridViewCellStyle68;
             this.ColContractor1.HeaderText = "Bidder1";
             this.ColContractor1.Name = "ColContractor1";
             this.ColContractor1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -550,8 +675,8 @@
             // 
             // ColContractor2
             // 
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Kalimati", 9F);
-            this.ColContractor2.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle69.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.ColContractor2.DefaultCellStyle = dataGridViewCellStyle69;
             this.ColContractor2.HeaderText = "Bidder2";
             this.ColContractor2.Name = "ColContractor2";
             this.ColContractor2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -566,8 +691,8 @@
             // 
             // ColContractor3
             // 
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Kalimati", 9F);
-            this.ColContractor3.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle70.Font = new System.Drawing.Font("Kalimati", 9F);
+            this.ColContractor3.DefaultCellStyle = dataGridViewCellStyle70;
             this.ColContractor3.HeaderText = "Bidder3";
             this.ColContractor3.Name = "ColContractor3";
             this.ColContractor3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -591,7 +716,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.generateToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1353, 28);
@@ -603,8 +729,6 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem1,
             this.toolStripMenuItem4,
-            this.generateToolStripMenuItem,
-            this.toolStripMenuItem1,
             this.savedipToolStripMenuItem,
             this.loaddipToolStripMenuItem,
             this.toolStripMenuItem3,
@@ -627,18 +751,6 @@
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(321, 6);
-            // 
-            // generateToolStripMenuItem
-            // 
-            this.generateToolStripMenuItem.Name = "generateToolStripMenuItem";
-            this.generateToolStripMenuItem.Size = new System.Drawing.Size(324, 24);
-            this.generateToolStripMenuItem.Text = "Generate File From Template (*.docx)";
-            this.generateToolStripMenuItem.Click += new System.EventHandler(this.generateToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(321, 6);
             // 
             // savedipToolStripMenuItem
             // 
@@ -678,6 +790,66 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // generateToolStripMenuItem1
+            // 
+            this.generateToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.singleFileToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.tippaniAndAgreementdocxToolStripMenuItem,
+            this.lettersFromOfficedocxToolStripMenuItem,
+            this.lettersToOfficedocxToolStripMenuItem,
+            this.toolStripMenuItem5,
+            this.allThreeFilesIndividuallyAtOncedocxToolStripMenuItem});
+            this.generateToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.generateToolStripMenuItem1.Name = "generateToolStripMenuItem1";
+            this.generateToolStripMenuItem1.Size = new System.Drawing.Size(81, 24);
+            this.generateToolStripMenuItem1.Text = "Generate";
+            // 
+            // singleFileToolStripMenuItem
+            // 
+            this.singleFileToolStripMenuItem.Name = "singleFileToolStripMenuItem";
+            this.singleFileToolStripMenuItem.Size = new System.Drawing.Size(272, 24);
+            this.singleFileToolStripMenuItem.Text = "Single Combined file (*.docx)";
+            this.singleFileToolStripMenuItem.Click += new System.EventHandler(this.singleFileToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(287, 6);
+            // 
+            // tippaniAndAgreementdocxToolStripMenuItem
+            // 
+            this.tippaniAndAgreementdocxToolStripMenuItem.Name = "tippaniAndAgreementdocxToolStripMenuItem";
+            this.tippaniAndAgreementdocxToolStripMenuItem.Size = new System.Drawing.Size(290, 24);
+            this.tippaniAndAgreementdocxToolStripMenuItem.Text = "Tippani and Agreement (*.docx)";
+            this.tippaniAndAgreementdocxToolStripMenuItem.Click += new System.EventHandler(this.tippaniAndAgreementdocxToolStripMenuItem_Click);
+            // 
+            // lettersFromOfficedocxToolStripMenuItem
+            // 
+            this.lettersFromOfficedocxToolStripMenuItem.Name = "lettersFromOfficedocxToolStripMenuItem";
+            this.lettersFromOfficedocxToolStripMenuItem.Size = new System.Drawing.Size(290, 24);
+            this.lettersFromOfficedocxToolStripMenuItem.Text = "Letters from Office (*.docx)";
+            this.lettersFromOfficedocxToolStripMenuItem.Click += new System.EventHandler(this.lettersFromOfficedocxToolStripMenuItem_Click);
+            // 
+            // lettersToOfficedocxToolStripMenuItem
+            // 
+            this.lettersToOfficedocxToolStripMenuItem.Name = "lettersToOfficedocxToolStripMenuItem";
+            this.lettersToOfficedocxToolStripMenuItem.Size = new System.Drawing.Size(290, 24);
+            this.lettersToOfficedocxToolStripMenuItem.Text = "Letters to Office (*.docx)";
+            this.lettersToOfficedocxToolStripMenuItem.Click += new System.EventHandler(this.lettersToOfficedocxToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(350, 6);
+            // 
+            // allThreeFilesIndividuallyAtOncedocxToolStripMenuItem
+            // 
+            this.allThreeFilesIndividuallyAtOncedocxToolStripMenuItem.Name = "allThreeFilesIndividuallyAtOncedocxToolStripMenuItem";
+            this.allThreeFilesIndividuallyAtOncedocxToolStripMenuItem.Size = new System.Drawing.Size(353, 24);
+            this.allThreeFilesIndividuallyAtOncedocxToolStripMenuItem.Text = "All three files individually at once (*.docx)";
+            this.allThreeFilesIndividuallyAtOncedocxToolStripMenuItem.Click += new System.EventHandler(this.allThreeFilesIndividuallyAtOncedocxToolStripMenuItem_Click);
+            // 
             // FrmDipGen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -696,6 +868,11 @@
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.tabControl2.ResumeLayout(false);
+            this.tabOpenAI.ResumeLayout(false);
+            this.tabOpenAI.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDate)).EndInit();
@@ -724,8 +901,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -734,19 +909,6 @@
         private System.Windows.Forms.DataGridView dataGridViewDate;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox TxtContext2;
-        private System.Windows.Forms.TextBox TxtContext1;
-        private System.Windows.Forms.TextBox TxtLvl3;
-        private System.Windows.Forms.TextBox TxtLvl2;
-        private System.Windows.Forms.TextBox TxtLvl1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox TxtDivision;
         private System.Windows.Forms.ToolStripMenuItem savedipToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loaddipToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
@@ -772,6 +934,37 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColContractor2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColContractor22;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColContractor3;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabOpenAI;
+        private System.Windows.Forms.TextBox TxtAPIKey;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox CmbMode;
+        private System.Windows.Forms.Label lblMode;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Button BtnGenerate2;
+        private System.Windows.Forms.Button BtnGenerate1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox TxtDivision;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox TxtContext2;
+        private System.Windows.Forms.TextBox TxtContext1;
+        private System.Windows.Forms.TextBox TxtLvl3;
+        private System.Windows.Forms.TextBox TxtLvl2;
+        private System.Windows.Forms.TextBox TxtLvl1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStripMenuItem generateToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem singleFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tippaniAndAgreementdocxToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lettersFromOfficedocxToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lettersToOfficedocxToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem allThreeFilesIndividuallyAtOncedocxToolStripMenuItem;
     }
 }
 
